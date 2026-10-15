@@ -1,0 +1,184 @@
+/* Shared design tokens and controls used by the dashboard and setup pages.
+   Text colours meet WCAG AA (4.5:1) on the paper and surface backgrounds. */
+:root {
+  --bg: #f8f7f2;
+  --surface: #fffefa;
+  --surface-soft: #f4f6ee;
+  --border: #e4e2d6;
+  --border-strong: #cfd8cb;
+  --text: #1f3d33;
+  --text-muted: #56675d;
+  --text-subtle: #64736a;
+  --accent: #205c48;
+  --accent-hover: #174c3a;
+  --accent-soft: #e6efe5;
+  --orange-text: #b65a2a;
+  --danger: #a3401f;
+  --danger-soft: #fbe9e1;
+  --warning: #8a5a12;
+  --warning-soft: #fdf1d8;
+  --success: #2d6a46;
+  --success-soft: #e5f2e6;
+  --focus-ring: 0 0 0 3px rgba(32, 92, 72, .28);
+  --radius: 12px;
+  --shadow-sm: 0 2px 8px rgba(52, 62, 43, .05);
+  --shadow-md: 0 10px 28px rgba(52, 62, 43, .08);
+}
+
+/* Keyboard users always see where they are; mouse clicks do not show the ring. */
+:focus-visible {
+  outline: 3px solid rgba(32, 92, 72, .55);
+  outline-offset: 2px;
+}
+
+button, input, select, textarea { font: inherit; }
+button { color: inherit; }
+
+.primary-action,
+.secondary-action,
+.danger-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s, transform .15s;
+}
+.primary-action { border: 0; background: var(--accent); color: #fff; }
+.primary-action:hover { background: var(--accent-hover); }
+.secondary-action { border: 1px solid var(--border-strong); background: var(--surface); color: var(--text); }
+.secondary-action:hover { border-color: #9fb59f; background: var(--surface-soft); }
+.danger-action { border: 0; background: var(--danger); color: #fff; }
+.danger-action:hover { background: #8a3418; }
+.primary-action:disabled,
+.secondary-action:disabled,
+.danger-action:disabled { opacity: .6; cursor: not-allowed; }
+.compact { min-height: 36px; padding: 0 12px; font-size: 14px; }
+
+.icon-button {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.icon-button:hover { background: var(--surface-soft); color: var(--text); }
+.icon-button.is-danger { color: var(--danger); }
+.icon-button.is-danger:hover { background: var(--danger-soft); }
+
+.danger-link {
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.danger-link:hover { background: var(--danger-soft); }
+
+.eyebrow-label {
+  display: block;
+  color: var(--text-subtle);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.field-hint { display: block; color: var(--text-subtle); font-size: 13px; font-weight: 400; }
+.muted-text { color: var(--text-subtle); font-size: 14px; }
+
+/* Form fields */
+.modal-form { display: grid; gap: 14px; }
+.modal-form label,
+.session-form label,
+.assign-fieldset legend {
+  display: grid;
+  gap: 6px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+}
+.modal-form input:not([type=checkbox]):not([type=radio]):not([type=file]),
+.modal-form select,
+.modal-form textarea,
+.session-form textarea,
+.session-form select,
+.list-toolbar select,
+.history-fields textarea,
+.history-fields input {
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 400;
+}
+.modal-form textarea, .session-form textarea, .history-fields textarea { line-height: 1.5; resize: vertical; }
+.modal-form input::placeholder, .session-form textarea::placeholder, .history-fields textarea::placeholder, .search-field input::placeholder { color: #7b897f; opacity: 1; }
+.modal-form input:focus, .modal-form select:focus, .session-form textarea:focus, .session-form select:focus, .history-fields textarea:focus, .history-fields input:focus, .list-toolbar select:focus {
+  border-color: var(--accent);
+  outline: 0;
+  box-shadow: var(--focus-ring);
+}
+.modal-form input[type=file] { width: 100%; color: var(--text-muted); font-size: 14px; font-weight: 400; }
+.form-pair { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 12px; }
+.check-label { display: flex !important; align-items: center; gap: 9px !important; font-weight: 600 !important; }
+.check-label input, .assign-option input, .progress-option input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+.modal-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; padding-top: 4px; }
+
+/* Alerts */
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.alert > svg { flex: 0 0 auto; margin-top: 1px; }
+.alert > span { flex: 1; }
+.alert .icon-button { width: 28px; height: 28px; margin: -4px -4px -4px 0; color: inherit; }
+.alert-error { background: var(--danger-soft); color: var(--danger); }
+.alert-success { background: var(--success-soft); color: var(--success); }
+
+@media (max-width: 540px) {
+  /* 16px inputs stop iOS Safari from zooming the page when a field is focused. */
+  .modal-form input:not([type=checkbox]):not([type=radio]):not([type=file]),
+  .modal-form select, .modal-form textarea, .session-form textarea, .session-form select,
+  .history-fields textarea, .history-fields input, .list-toolbar select, .search-field input, .code-form input { font-size: 16px; }
+  .form-pair { grid-template-columns: minmax(0, 1fr); }
+}
+
+.modal-form input[type=file]::file-selector-button {
+  margin-right: 10px;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  background: var(--surface-soft);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
